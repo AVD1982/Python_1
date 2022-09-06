@@ -1790,20 +1790,451 @@ import time
 # for i in goods:
 #     print(i, ")", goods[i][0], ' - ', goods[i][1], "шт. по", goods[i][2], "руб.", sep="")
 
-d = {'A': 1, 'B': 2, 'C': 3}
-# value = d.get ('B')
-a = d.items()
+# d = {'A': 1, 'B': 2, 'C': 3}
+# # value = d.get ('B')
+# a = d.items()
+# print(a)
+# b = d.keys()
+# print(b)
+# c = d.values()
+# print(c)
+#
+# for key, val in d.items():
+#     print(key, val)
+#
+# # item = d.pop('B')
+# # item = d.setdefault('C', 8)
+# d.update([('R', 7), ('Q', 9)])
+# # print(item)
+# print(d)
+#
+# d = {'name': 'Kelly', 'age': 25, 'salary': 8000, 'citty': 'New York'}
+# new_d = dict()
+# new_d['name'] = d.pop('name')
+# new_d['salary'] = d.pop('salary')
+# print(new_d)
+
+# a = {
+#     'First': {
+#         1: "one",
+#         2: "two",
+#         3: 'three',
+#     },
+#     'First2': {
+#         1.1: "one",
+#         2.2: "two",
+#         3.3: 'three',
+#     }
+# }
+# print(a)
+# for x in a:
+#     print(x)
+#     for y in a[x]:
+#         print('\t', y, ": ", a[x][y], sep = "")
+#
+
+# sales = {
+#     'John': {"N": 3056, 's': 8463, 'e': 8441, 'w': 2694},
+#     'John2': {"N": 1634, 's': 789463, 'e': 847841, 'w': 23694},
+#     'John3': {"N": 3547, 's': 847863, 'e': 84941, 'w': 26934},
+#     'Joh4': {"N": 8956, 's': 8436863, 'e': 84441, 'w': 264694}
+# }
+# for x in sales:
+#     print(x)
+#     for y in sales[x]:
+#         print('\t', y, ": ", sales[x][y], sep = "")
+#
+# person = input("Имя: ")
+# region = input("Регион: ")
+# print(sales[person][region])
+# data = int(input("Новое значение: "))
+# sales[person][region] = data
+# print(sales[person])
+
+# data = {"Один": 1, "Два": 2, "Три": 3, "Четыре": 4}
+# d = {k: v for k, v in data.items() if v <= 2}
+# print(d)
+
+# s = "Hello"
+# b = {i: i * 3 for i in s}
+# print(b)
+# a = list(b.items() )
+# print(a)
+
+# a = ["Один", 1, 2, 3, "Два", 10, 20, "Три", 15, 36, 60, "Четыре", -20]
+# d = dict()
+# s = None
+# for i in a:
+#     if type(i) == str:
+#         d[i] = []
+#         s = i # s = 'odin'
+#     else:
+#         d[s].append(i)
+# print(d)
+# zip____________________________________________________________________
+
+# d = dict(zip([12, 1, 2], ['dec', 'jan', 'feb']))
+# print(d)
+
+# a = ['Dec', 'Jan', 'Feb']
+# b = [12, 1, 2]
+# d = {k: v for k, v in zip(b, a)}
+# print(d)
+
+# one = {"name": "Igor", "Last_ name": "Smith", "Job": "Consultant"}
+# two = {"name": "Olga", "Last_ name": "Smat", "Job": "Manager"}
+# for (k1, v1), (k2, v2) in zip(one.items(), two.items()):
+#     print(k1, v1)
+#     print(k2, v2)
+# распаковка последовательности
+
+# pairs = [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd')]
+# a, b = zip(*pairs)
+# print(a)
+# print(b)
+
+# month = ["jan", "feb", "march"]
+# total_sales = [52000.00, 51000.00, 48000.00]
+# prod_cost = [46800.00, 45900.00, 43200.00]
+# for sales, costs, m in zip(total_sales, prod_cost, month):
+#     profit = sales - costs
+#     print("Общая прибыль в", m, "=", profit)
+
+# one = {"apple": 20, "orange": 35}
+# two = {"pepper": 40, "onion": 55}
+# print({**two, **one})
+# _________________________________________________________
+# for i in range(3):
+#     print(i)
+# colors = ['red', 'yellow', 'green']
+# j = 1
+# for i in colors:
+#     print(j, i)
+#     j += 1
+# colors = ['red', 'yellow', 'green']
+# for j, i in enumerate(colors, 1):
+#     print(j, i)
+# __________________________________________
+
+
+# a = [1, 2, 3, 4, 5]
+# b= [*a, 6,6, 1, 2, 3, 4, 5]
+# print(b)
+
+# def func(*args):
+#     return args
+#
+#
+# print(func(2))
+# print(func(2, 3, 1))
+#
+
+
+# def summs(*params):
+#     res = 0
+#     for i in params:
+#         res += i
+#     return res
+#
+# print(1, 2, 3, 4, 5)
+# print(7, 3)
+
+
+# def to_dict(*args):
+#     return {i: i for i in args}
+#
+
+# print(to_dict(1, 2, 3, 4))
+# print(to_dict("grey", (2, 17), 3.11, -4))
+
+
+# def ch(*args):
+#     res = []
+#     sr_ar = sum(args) / len(args)
+#     print(sr_ar)
+#     for i in args:
+#         if i < sr_ar:
+#             res.append(i)
+#     return res
+#
+#
+# print(ch(1, 2, 3, 4, 5, 6, 7, 8, 9))
+# print(ch(3, 6, 1, 9, 5))
+#
+
+# def func(a, *args):
+#     return a, args
+#
+#
+# print(func(1))
+# print(func(1, 2, 3, 'abc'))
+
+
+# def print_scorec(student, *scorec):
+#     print("Student Name:" + student)
+#     for scorec in scorec:
+#         print(scorec)
+#
+# print_scorec("Irina", 100, 85, 96, 33, 25)
+# print_scorec("Igor", 100, 44, 25)
+
+
+# def intro(**data):
+#     for k, v in data.items():
+#         print(k, 'is', v)
+#     print()
+#
+# intro(first_name="Irina",last_name="Fokina",age=22)
+# intro(first_name="Igor",last_name="Gina",email="a1hqih.com", age=22, phone="98736244")
+#
+
+# def db(**kwargs):
+#     my_dict.update(kwargs)
+#
+#
+# my_dict = {'one': 'first'}
+# db(k1=22, k2=31, k3=11, k4=91)
+# db(name='Bob', age='31', weight=61, eyes_color='gray')
+# print('my_dict=', my_dict)
+
+# def db(b, *args, name=None, **kwargs):
+#     # print(b, args, name, kwargs)
+#
+# db(6, 'd', "l", a=5, name='Olga')
+#
+# name = 'Tom'  # глобальная область видимости
+#
+#
+# def hi():
+#     # global name
+#     name = "Sam"  # локальная область видимости
+#     print("Hello", name)
+#
+#
+# def bye():
+#     print("good bye", name)
+#
+#
+# hi()
+# bye()
+# print(name)
+
+# i = 5
+#
+#
+# def func(arg=i):
+#     print("i =", i)
+#     print('arg =', arg)
+#
+#
+# i = 6
+# func()
+
+# x = 4
+#
+# def add_two(a):
+#     x = 2
+#
+#     def add_some():
+#         x = 5
+#         print('x=', x)
+#
+#         return a + x
+#
+#     return add_some()
+#
+#
+# print(add_two(3))
+
+# def bold(fn):
+#     def wrap():
+#         return "<b>" + fn() + "</b>"
+#
+#     return wrap
+#
+#
+# def italic(fn):
+#     def wrap():
+#         return "<i>" + fn() + "</i>"
+#
+#     return wrap
+#
+# @italic
+# @bold
+#
+# def hello():
+#     return "text"
+# print(hello())
+# ________________________________________________________________________________________
+# def cnt(fn):
+#     count = 0
+#
+#         def wrap():
+#             nonlocal count
+#             count = count +1
+#             fn()
+#             print('вызов функции: ',count)
+#         return wrap
+#
+#
+# @cnt
+# def hello():
+#      print(hello())
+#
+#
+# hello()
+# hello()
+
+# def args_dec(fn):
+#     def wrap(x, y):
+#         print("Сложение: ", x, "И", y, "=", end=" ")
+#         fn(x, y)
+#     return wrap
+#
+#
+# @args_dec
+# def summa(a, b):
+#     print(a + b)
+#
+#
+# summa(5, 2)
+#
+# def mytiply(arg):
+#     def my_decorator(func):
+#         def wrap(*args, **kwargs):
+#             return arg * func(*args, **kwargs)
+#         return wrap
+#     return my_decorator
+#
+#
+# @mytiply(3)
+# def return_num(num):
+#     return num
+#
+#
+# print("Рузультат: ", return_num(5))
+
+
+# def changeCharTOStr(s, c_old, c_new):
+#     i = 0
+#     s2 =""
+#     while i < len(s):
+#         if s[i] == c_old:
+#             s2 = s2 + c_new
+#         else:
+#             s2 = s2 + s[i]
+#         i = i + 1
+#     return s2
+#
+#
+# str1 = " Я изучаю Nython. Мне нравиться Nython. Nython очень интересный язык программирования."
+# str2 = changeCharTOStr(str1, "N", "P")
+# print(str1)
+# print(str2)
+
+# _________________________________________________________________________
+
+# print(ord("л"))
+# while True:
+#     n = input("->")
+#     if n != "-1":
+#         print(ord(n))
+#     else:
+#         break
+
+# my_str = 'Test string for meee'
+# arr = [ord(x) for x in my_str]
+# print("ASCII коды:", arr)
+# arr = [int(sum(arr) / len(arr))] + arr
+# print("Среднеe арифмeтическое ", arr)
+# arr += [x for x in [ord(x) for x in input('->') + " "[:3]] if x not in arr]
+# print(arr)
+# if arr[-1] in arr[:-1]:
+#     print("Количество последних элементов: ", arr.count(arr[-1]) - 1)
+# arr.sort(reverse=True)
+# print(arr)
+#
+# print(chr(97))
+# print(chr(7544))
+
+# a = 122
+# b = 97
+# if a > b:
+#     for i in range(b, a + 1):
+#         print(chr(i), end=" ")
+# else:
+#     for i in range(a, b + 1):
+#         print(chr(i), end=" ")
+
+# print("apple" == "Apple")
+# print("apple" > "Apple")  # 97 > 65
+
+# from random import randint
+#
+# short = 7
+# longest = 12
+# min_ascii = 33
+# max_ascii = 126
+#
+#
+# def random_password():
+#     random_length = randint(short, longest)
+#     res = ''
+#     for i in range(random_length):
+#         random_char = chr(randint(min_ascii, max_ascii))
+#         res += random_char
+#     return res
+# print('Ваш случайный пароль:',random_password())
+
+# s = "hello, WORLD! I am learn Python."
+# print(s.capitalize())  # Hello, world! i am learn python.
+# print(s.lower())  #
+# print(s.upper())  # HELLO, WORLD! I AM LEARN PYTHON.
+# print(s.swapcase())  # HELLO, world! i AM LEARN pYTHON.
+# print(s.title())  # Hello, World! I Am Learn Python.
+#
+#
+# print(s. count('h', 1, -4))  # колличество искомых символов
+# print(s.find("Python"))   #возвращается индекс первого совпадения
+# print(s.find("oPython"))  #если пщдсстраки нет
+#
+# string = "один два"
+# one = string[:string.find(" ")]
+# two = string[string.find(" ") + 1:]
+# print(two + " " + one)
+#
+# s = "hkj14blk8496hk"
+# digits = []
+# for symbol in s:
+#     if '0123456789'.find(symbol) != -1:
+#         digits.append(int(symbol))
+# print(digits)
+
+# print("   py".lstrip())
+# print("py    ".rstrip())
+# print('   py   '.strip())
+#
+# print("https://www.pyton.org".lstrip("th/sp:"))
+#
+# print('$py.$$$;'.rstrip(';$.'))
+# print('$py.$$$;'.strip(';$.'))
+#
+# print("https://www.pyton.org".lstrip("th/sp:").rstrip("/.org"))
+
+# str1 = " Я изучаю Nython. Мне нравиться Nython. Nython очень интересный язык программирования."
+# print(str1.replace("Nython", "Python", 2))
+#
+# s = " - "
+# seq = ('a', 'b', 'c')
+# print(s.join(seq))   # a - b - c
+# print('..'.join(['1', '2']))
+# print('..'.join('hello'))
+
+# print('строка разделенная пробелами'.split())
+#
+# print('www.python.org.ru'.split('.', 2))
+# print('www.python.org.ru'.rsplit('.', 2))
+# print('www...python...org.'.rsplit('.'))
+
+a = input('->').split()
 print(a)
-b = d.keys()
-print(b)
-c = d.values()
-print(c)
-
-for key, val in d.items():
-    print(key, val)
-
-# item = d.pop('B')
-# item = d.setdefault('C', 8)
-d.update([('R', 7), ('Q', 9)])
-# print(item)
-print(d)
