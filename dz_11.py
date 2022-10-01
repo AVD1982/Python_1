@@ -26,21 +26,28 @@
 #
 # 3 задача _____________________________________________
 
-# stud = int(input("Введите количество студентов: "))
-# spisok = dict()
-#
-#
-# def ch(*args):
-#     res = []
-#     sr_ar = sum(args) // stud
-#     print("средний балл : ", sr_ar)
-#
-#     for i in args:
-#         if i > sr_ar:
-#             res.append(i)
-#             return res
-            # print('r', res)
-            # for name_, ball_ in name_ball.items():
-            #     if ball_ == res:
-            #         print(list(name_ball.keys())[list(name_ball.values()).index(res)])
+stud = int(input("Введите количество студентов: "))
+spisok = dict()
+for i in range(stud):
+    name = input('Введите имя ' + str(i+1) + ' студента ')
+    ball = int(input("Введите балл "))
+    spisok[name] = ball
+def
 
+def ch(*args):
+    res = []
+    sr_ar = sum(args) // stud
+    print("средний балл : ", sr_ar)
+print(spisok)
+def ch(*args):
+    res = []
+    sr_ar = sum(args) // stud
+    print("средний балл : ", sr_ar)
+
+    for i in args:
+        if i > sr_ar:
+            res.append(i)
+
+            for name_, ball_ in name_ball.items():
+                if ball_ == res:
+        return name

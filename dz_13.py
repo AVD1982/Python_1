@@ -25,7 +25,7 @@ print(ball_min)
 
 #  4 задача
 
-
+цвц
 nums = [3, 5, 7, 3, 9, 5, 7, 2]
 
 print(list(map(lambda t: t ** 2, nums)))

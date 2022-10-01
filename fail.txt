@@ -1,0 +1,7 @@
+/* ul {list-style-type: circle;
+    list-style-image: url(6.jpg);}
+ol {list-style-type: lower-greek;
+    list-style-type: url(icon.jpg);}
+body{background-color: green;} */
+.arrow{list-style-image: url(s.gif);}
+ol {list-style-image: none;}
