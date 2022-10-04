@@ -2,82 +2,33 @@
 # my_str = 'I am learning Python. hello, WORLD!'
 
 
-class Book:
-    name_book = "name"
-    year_of_release = '00.00.00'
-    publisher = 'publisher'
-    genre = 'genre'
-    author = 'author'
-    price = '$'
+class Point:
 
-    def print_info(self):
-        print('КНИГА'.center(40, '*'))
-        print(f'НАЗВАНИЕ: {self.name_book}\nДата выпуска: {self.year_of_release}\n'
-              f'Издательство:{self.publisher}\n Жанр: {self.genre}\n'
-              f'Автор: {self.author}\n Цена: {self.price}')
-        print('=' * 40)
+    def __init__(self, x=0, y=0):
+        self.__x = x
+        self.__y = y
 
-    def input_info(self, name_book, year_of_release, publisher, genre, author, price):
-        self.name_book = name_book
-        self.year_of_release = year_of_release
-        self.publisher = publisher
-        self.genre = genre
-        self.author = author
-        self.price = price
+    @property
+    def coord_x(self):  # __get_x
+        print("Вызов __get_x")
+        return self.__x
 
-    def set_name(self, name_book):
-        self.name_book = name_book
+    @coord_x.setter
+    def coord_x(self, x):  # __set_x
+        print("Вызов __set_x")
+        self.__x = x
 
-    def get_name(self):
-        return self.name_book
+    @coord_x.deleter
+    def coord_x(self):  # __del_x
+        print("Удаление свойства")
+        del self.__x
 
-    def set_year(self, year_of_release):
-        self.year_of_release = year_of_release
-
-    def get_year(self):
-        return self.year_of_release
-
-    def set_publisher(self, publisher):
-        self.publisher = publisher
-
-    def get_publisher(self):
-        return self.publisher
-
-    def set_genre(self, genre):
-        self.genre = genre
-
-    def get_genre(self):
-        return self.genre
-
-    def set_author(self, author):
-        self.author = author
-
-    def get_author(self):
-        return self.author
-
-    def set_price(self, price):
-        self.price = price
-
-    def get_price(self):
-        return self.price
+    # coord_x = property(__get_x, __set_x, __del_x)
 
 
-
-
-
-h1 = Book()
-h1.input_info('Приключение Тома Сойера', "1985", "Средне-Уральское книжное издательство", 'Приключенческий Роман',
-              "Марк Твен", "1руб 20 коп")
-h1.print_info()
-h1.set_name("МАУГЛИ")
-h1.set_year("1992")
-h1.set_publisher("Новосибирское издательство")
-h1.set_genre("Приключенческая сказка")
-h1.set_author("Редьярд Киплинг")
-h1.set_price("10руб")
-print(h1.get_name())
-print(h1.get_year())
-print(h1.get_publisher())
-print(h1.get_genre())
-print(h1.get_author())
-print(h1.get_price())
+p1 = Point(5, 10)
+p1.coord_x = 100
+print(p1.coord_x)
+del p1.coord_x
+p1.coord_x = 7
+print(p1.__dict__)
