@@ -50,15 +50,3 @@
 #             print("Вызов __set_x")
 #             self.__x = x
 #     coord_x = property(__get_x, __set_x, __del_x)
-class Abc:
-    def __init__(self, kg=0):
-        self.__kg = kg
-
-    @property
-    def kg_kg(self):
-        return self.__kg
-
-    @kg_kg.setter
-    def kg_kg(self, kg):
-        if isinstance(kg, (int,float)):
-            self__kg =
