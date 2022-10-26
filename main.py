@@ -3119,7 +3119,7 @@ import os
 # print(date1.string_to_bd())
 # _______________________________________________________________________________________________
 # class Account:
-#     rate_usd = 0.013
+#     rate_us d = 0.013
 #     rate_eur = 0.011
 #     suffix = "RUB"
 #     suffix_usd = "USD"
@@ -3892,29 +3892,29 @@ import os
 # print(D.mro())
 #  ____dz___
 
-class Student:
-    def __init__(self, name):
-        self.name = name
-        self.n = self.Laptop()
-
-    def show(self):
-        print(self.name, end="")
-        self.n.show()
-
-    class Laptop:
-        def __init__(self):
-            self.model = 'hp'
-            self.processor = 'i7'
-            self.memory = 16
-
-        def show(self):
-            print(f' => {self.memory}, {self.processor}, {self.memory}')
-
-
-p = Student('Roman')
-p2 = Student('Vladimir')
-p.show()
-p2.show()
+# class Student:
+#     def __init__(self, name):
+#         self.name = name
+#         self.n = self.Laptop()
+#
+#     def show(self):
+#         print(self.name, end="")
+#         self.n.show()
+#
+#     class Laptop:
+#         def __init__(self):
+#             self.model = 'hp'
+#             self.processor = 'i7'
+#             self.memory = 16
+#
+#         def show(self):
+#             print(f' => {self.memory}, {self.processor}, {self.memory}')
+#
+#
+# p = Student('Roman')
+# p2 = Student('Vladimir')
+# p.show()
+# p2.show()
 #  _____16.10 МИКСИНЫ (ПРИМЕСИ)
 
 
@@ -4015,3 +4015,473 @@ p2.show()
 # print(c4.get_format_time())
 # c3 = c1 + c2
 # print(c3.get_format_time())
+
+# Полиморфизм
+
+# class Rectangle:
+#     def __init__(self, w, h):
+#         self.w = w
+#         self.h = h
+#
+#     def get_perimetr(self):
+#         return 2 * (self.w + self.h)
+#
+#
+# class Square:
+#     def __init__(self, a):
+#         self.a = a
+#
+#     def get_perimetr(self):
+#         return 4 * self.a
+#
+#
+# class Triangle:
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def get_perimetr(self):
+#         return self.a + self.b + self.c
+#
+#
+# r1 = Rectangle(1, 2)
+# r2 = Rectangle(3, 4)
+#
+# # print(r1.get_per_rect(), r2.get_per_rect())
+#
+# s1 = Square(10)
+# s2 = Square(20)
+# # print(s1.get_per_sq(), s2.get_per_sq())
+#
+# shape = [r1, r2, s1, s2]
+# for g in shape:
+#     if isinstance(g, Rectangle):
+#         print(g.get_per_rect())
+#     else:
+#         print(g.get_per_sq())
+
+
+# class Number:
+#     def __init__(self, value):
+#         self.value = value
+#
+#     def total(self, a):
+#         return self.value + int(a)
+#
+#
+# class Text:
+#     def __init__(self, value):
+#         self.value = value
+#
+#     def total(self, a):
+#         return len(self.value + str(a))
+#
+#
+# t1 = Number(10)
+# t2 = Text("Python")
+# print(t1.total(35))
+# print(t2.total(35))
+
+# class Human:
+#     def __init__(self, lastname, name, age):
+#         self.name = name
+#         self.lastname = lastname
+#         self.age = age
+#
+#     def info(self):
+#         print(f'\n{self.lastname}, {self.name}, {self.age}')
+#
+#
+# class Student(Human):
+#     def __init__(self, lastname, name, age, direction, group, rating):
+#         super().__init__(lastname, name, age)
+#         self.direction = direction
+#         self.group = group
+#         self.raiting = rating
+#
+#     def info(self):
+#         super().info()
+#         print(f'{self.direction}{self.group}{self.raiting}')
+#
+#
+# class Teacher(Human):
+#     def __init__(self, spec, exp):
+#         super().__init__(lastname, name, age)
+#         self.exp = exp
+#         self.spex = spec
+#
+#     def info(self):
+#         super().info()
+#         print(f'{self.spex}{self.exp}', end='')
+#
+#
+# class Graduate(Student):
+#     def __init__(self, lastname, name, age, direction, group, rating, tema):
+#         super().__init__(lastname, name, age, direction, group, rating)
+#         self.tema = tema
+#
+#     def info(self):
+#         super.info()
+#         print(f' {self.tema}', end='')
+#
+#
+# group = [
+#     Student("Батодалаев", "Даши", 16, "ГК", "Web_011", 5),
+#     Student("Загидуллин", "Линар", 32, "РПО", "PD_011", 5),
+#     Graduate("Шугани", "Сергей", 15, "РПО", "PD_011", 5, "Защита персональных данных"),
+#     Teacher("Даньшин", "Андрей", 38, "Астрофизика", 110),
+#     # Student("Маркин", "Даниил", 17, "ГК", "Python_011", 5),
+#     # Teacher("Башкиров", "Алексей", 45, "Разработка приложений", 20)
+# ]
+#
+# for i in group:
+#     i.info()
+#  ________________________________
+
+# class Cat:
+#     def __init__(self,name):
+#         self.name = name
+#
+#     def __repr__(self):
+#         return f"{__class__}: {self.name}"
+#
+#     def __str__(self):
+#         return f"{self.name}"
+#
+#
+# cat = Cat("Пушок")
+# print(cat)
+
+# class Point:
+#     def __init__(self, *args):
+#         self.__coords = args
+#
+#     def __len__(self):
+#         return len(self.__coords)
+#
+#
+# p = Point(5, 7, 9)
+# print(len(p))
+
+# class Point:
+#     __slots__ = ("x", "y", "__length")
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         self.length = math.sqrt(x * x + y * y)
+#
+#     @property
+#     def legth(self):
+#         return self.__length
+#
+#     @length.setter
+#     def length(self, val):
+#         self.__length = val
+#
+#
+# pt = Point(1, 2)
+# # pt.z = 5
+# # print(pt.__dict__)
+# print(pt.x, pt.y, pt.length)
+
+# class Point:
+#     __slots__ = ("x", "y")
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# class Point2D:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# pt = Point(10, 20)
+# pt2 = Point2D(10, 20)
+# print("pt =", pt.__sizeof__())
+# print("pt2 =", pt2.__sizeof__() + pt2.__dict__.__sizeof__())
+
+
+# class Point:
+#     __slots__ = ("x", "y")
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#
+#
+# class Point3D(Point):
+#     __slots__ = "x", "y", "z"
+#
+#
+# pt = Point(1, 2)
+# pt2 = Point3D(10, 20)
+# pt2.z = 30
+# print(pt2.z)
+# # print(pt2.__dict__)
+# a = 1, 2, 3
+# print(type(a))
+
+# Функторы
+
+# class Counter:
+#     def __init__(self):
+#         self.__counter = 0
+#
+#     def __call__(self, *args, **kwargs):
+#         self.__counter += 1
+#         print(self.__counter)
+#         return self.__counter
+#
+#
+# c1 = Counter()
+# c1()
+# c1()
+# c2 = Counter()
+# c2()
+
+
+# class StripChars:
+#     def __init__(self, chars):
+#         self.__chars = chars
+#
+#     def __call__(self, *args, **kwargs):
+#         if not isinstance(args[0], str):
+#             raise ValueError("Аргумент должен быть строкой")
+#
+#         return args[0].strip(self.__chars)
+#
+#
+# s1 = StripChars("?:.;!")
+# print(s1("Hello World!"))
+#
+#
+# def strip_string(chars):
+#     def wrap(string):
+#         if not isinstance(string, str):
+#             raise ValueError("Аргумент должен быть строкой")
+#         return string.strip(chars)
+#     return  wrap
+#
+#
+# s2 = StripChars("?:.;!")
+# print(s2("Hello World!"))
+
+# Класс как декоратор
+
+
+# class MyDecorator:
+#     def __init__(self, func):
+#         self.func = func
+#
+#     def __call__(self, a, b):
+#         print("Перед вызовом функции")
+#         res = self.func(a, b)
+#         print("После функции")
+#         return res
+#
+#
+# @MyDecorator
+# def func1(a, b):
+#     return a * b
+#
+#
+# print(func1(2, 5))
+
+
+# class Power:
+#     def __init__(self, func):
+#         self.func = func
+#
+#     def __call__(self, a, b):
+#         res = self.func(a, b)
+#         return res ** 2
+#
+#
+# @Power
+# def func1(a, b):
+#     return a * b
+#
+#
+# print(func1(2, 3))
+
+
+# class MyDecorator:
+#     def __init__(self, func):
+#         self.func = func
+#
+#     def __call__(self, *args, **kwargs):
+#         print("Перед вызовом функции")
+#         res = self.func(*args, **kwargs)
+#         print("После функции")
+#         return res
+#
+#
+# @MyDecorator
+# def func1(a, b):
+#     return a * b
+#
+
+# print(func1(2, 5))
+
+
+# class MyDecorator:
+#     def __init__(self, arg):
+#         self.name = arg
+#
+#     def __call__(self, func):
+#         def wrap(a, b):
+#             print("Перед вызовом функции")
+#             print(self.name)
+#             func(a, b)
+#             print("После  вызовом функции")
+#
+#         return wrap
+#
+#
+# @MyDecorator("test2")
+# def add(a, b):
+#     print(a, b)
+#
+#
+# print(func1(2, 5))
+
+#
+# class Power:
+#     def __init__(self, func):
+#         self.func = func
+#
+#     def __call__(self, func):
+#         def wrap(a, b):
+#             return func(a, b) ** self.func
+#
+#         return wrap
+#
+#
+#
+# @Power(3)
+# def func1(a, b):
+#     return a * b
+#
+#
+# print(func1(2, 3))
+
+
+# Декорирование методов
+
+# def dec(fn):
+#     def wrap(*args, **kwargs):
+#         print("*" * 20)
+#         fn(*args, **kwargs)
+#         print("*" * 20)
+#
+#     return wrap
+#
+#
+# class Person:
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#
+#     @dec
+#     def info(self):
+#         print(f'{self.name} {self.surname}')
+#
+#
+# p1 = Person("Виталий", "Карасев")
+# p1.info()
+
+#  Декорирование классов
+
+# def decorator(cls):
+#     class Wrapper(cls):
+#         def doubler(self, val):
+#             return val * 2
+#
+#     return Wrapper
+#
+# @decorator
+# class ActualClass:
+#     def __init__(self):
+#         print("Инициализатор ActualClass")
+#
+#     def quad(self, val):
+#         return val * 4
+#
+#
+# obj = ActualClass()
+# print(obj.quad(4))
+# print(obj.doubler(2))
+
+# class StringD:
+#     def __init__(self, value=None):
+#         if value:
+#             self.set(value)
+#
+#     def get(self):
+#         return self.__value
+#
+#     def set(self, value):
+#         self.__value = value
+#
+#
+# class Person:
+#     def __init__(self, name, surname):
+#         self.name = StringD(name)
+#         self.surname = StringD(surname)
+
+# @property
+# def name(self):
+#     return self.__name
+#
+# @name.setter
+# def name(self, value):
+#     self.__name = value
+#
+# @property
+# def surname(self):
+#     return self.__surname
+#
+# @surname.setter
+# def surname(self, value):
+#     self.__surname = value
+
+
+# p = Person("Ivan", "Petrov")
+# print(p.name.get())
+
+
+# ДескрипторЫ (__get__, __set__, __delete__, __set_name__)
+
+class ValidString:
+    def __set_name__(self, owner, name):
+        self.__name = name
+
+    def __get__(self, instance, owner):
+        return instance.__dict__[self.__name]
+
+    def __set__(self, instance, value):
+        if not isinstance(value, str):
+            raise ValueError(f"{self.__name} должно быть строкой")
+        instance.__dict__[self.__name] = value
+
+
+class Person:
+    name = ValidString
+    surname = ValidString
+
+    def __init__(self, name, surname):
+        self.name = name
+        self.surname = surname
+
+
+p = Person("Ivan", "Petrov")
+print(p.name)
+print(p.surname)
+
+p.name = 23
+print(p.name)
