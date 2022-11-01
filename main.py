@@ -909,8 +909,6 @@
 # print(randint(10, 15))
 # print(randrange(0, 10, 2))
 
-import random as r
-
 # print(r.randint(10, 15))
 # print(r.randrange(10))
 #
@@ -1111,8 +1109,6 @@ import random as r
 # print("Произведение ненулевых элементов: ", m)
 
 
-import math
-
 # num1 = math.sqrt(16)
 # num2 = math.ceil(3.2)
 # num3 = math.floor(3.8)
@@ -1126,8 +1122,6 @@ import math
 
 # rd = int(input("Введите радиус окружности: "))
 # print("Длина окружности:", round(2 * math.pi * rd, 2))
-
-import time
 
 # seconds = time.time()
 # print("Секунды с начала эпохи: ", seconds)
@@ -2249,8 +2243,6 @@ import time
 # print("an, ", e)
 #  ____________ругулярные выражения____________________________
 
-import re
-
 # s = "Я ищу совпадения в 2021 года. И я из найду в 2 счёта.4654"
 # reg = r'[2021]'
 # print(s.find(reg))
@@ -2608,8 +2600,6 @@ import re
 #     print(i, len(i), word, 'clov')
 #
 # print(line, 'строки')
-
-import os
 
 
 # print("текущая директоия:", os.getcwd())
@@ -4457,31 +4447,433 @@ import os
 
 # ДескрипторЫ (__get__, __set__, __delete__, __set_name__)
 
-class ValidString:
-    def __set_name__(self, owner, name):
-        self.__name = name
+# class ValidString:
+#     def __set_name__(self, owner, name):
+#         self.__name = name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.__name]
+#
+#     def __set__(self, instance, value):
+#         if not isinstance(value, str):
+#             raise ValueError(f"{self.__name} должно быть строкой")
+#         instance.__dict__[self.__name] = value
+#
+#
+# class Person:
+#     name = ValidString
+#     surname = ValidString
+#
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#
+#
+# p = Person("Ivan", "Petrov")
+# print(p.name)
+# print(p.surname)
+#
+# p.name = 23
+# print(p.name)
 
-    def __get__(self, instance, owner):
-        return instance.__dict__[self.__name]
 
-    def __set__(self, instance, value):
-        if not isinstance(value, str):
-            raise ValueError(f"{self.__name} должно быть строкой")
-        instance.__dict__[self.__name] = value
+#  ____________29.10.22________________________________ строка 6225
+# import math
+# from abc import ABC, abstractmethod
+#
+#
+# class Share(ABC):
+#     def __init__(self,w color):
+#         self.perimeter = perimeter
+#         self.square = square
+#         self.info_fig = []
+#
+#     @abstractmethod
+#     def perimeter(self):
+#         pass
+#
+#     @abstractmethod
+#     def square(self):
+#         pass
+#
+#     @abstractmethod
+#     def draw(self):
+#        pass
+#
+#
+# class Square(Share):
+#     def __init__(self, w, h):
+#         self.w = w
+#         self.h = h
+#
+#     def perimeter(self):
+#         perimeter = self.w * 2 + self.h * 2
+#         return perimeter
+#
+#     def square(self):
+#         return self.w * self.h
+#
+#
+# class Rectangle(Share):
+#     def __init__(self, w, h):
+#         self.w = w
+#         self.h = h
+#
+#     def perimeter(self):
+#         perimeter = self.w * 2 + self.h * 2
+#         return perimeter
+#
+#     def square(self):
+#         return self.w * self.h
+#
+#
+# class Triangle(Share):
+#     def __init__(self, w, h, l):
+#         self.w = w
+#         self.h = h
+#         self.l = l
+#
+#     def perimeter(self):
+#         perimeter = (self.w + self.h + self.l) / 2
+#         return perimeter
+#
+#     def square(self):
+#         return self.w / 4 * math.sqrt(4 * self.h ** 2 - self.w ** 2)
+#
+#
+# s = Square(3, 3)
+# print(f"===Квадрат===\nСторона: 3\nЦвет: red\nПлощадь: {s.square()}\nПериметр: {s.perimeter()} ")
+#
+# r = Rectangle(3, 7)
+# print(f"===Квадрат===\nДлина: 3\nШирина: 7\nЦвет: green\nПлощадь: {r.square()}\nПериметр: {r.perimeter()}")
+#
+# t = Triangle(11, 6, 6)
+# print(
+#     f"===Треугольник===\nСторона 1: 11\nСторона 2: 6\nСторона 3: 6\nЦвет: yellow\nПлощадь: {t.square():.2f}\nПериметр: {t.perimeter()}")
+#
+# for i in range(s):
+#     for j in range(i):
+#         print("*", end="")
+#         print()
+# a = (s, r, t)
+# for i in a:
+#     print(i.perimeter())
+#     print(i.square())
+#
+#
+# _____________________________________________________________________
+# class OldOrder:
+#     def __set_name__(self, owner, name):
+#         self.__name = name
+#
+#     def __get__(self, instance, owner):
+#         return instance.__dict__[self.__name]
+#
+#     def __set__(self, instance, value):
+#         if value <= 0:
+#             raise ValueError(f"{self.__name} число должно быть положительным")
+#         instance.__dict__[self.__name] = value
+#
+#
+# class Order:
+#     price = OldOrder()
+#     amount = OldOrder()
+#
+#     def __init__(self, name, price, amount):
+#         self.name = name
+#         self.price = price
+#         self.amount = amount
+#
+#     def sum(self):
+#         return self.price * self.amount
+#
+#
+# o = Order('apple', 5, 10)
+# print(o.sum())
+
+#  ________________________ 6305
+
+# class Integer:
+#     @classmethod
+#     def verify_coords(cls, coord):
+#         if not isinstance(coord, int):
+#             raise TypeError(f"Координата {coord} должна быть числом")
+#
+#     def __set_name__(self, owner, name):
+#         self.name = "_" + name
+#
+#     def __get__(self, instance, owner):
+#         # return instance.__dict__[self.name]
+#         return getattr(instance, self.name)
+#
+#     def __set__(self, instance, value):
+#         self.verify_coords(value)
+#         # instance.__dict__[self.name] = value
+#         setattr(instance, self.name, value)
+#
+#
+# class Point3d:
+#     x = Integer()
+#     y = Integer()
+#     z = Integer()
+#
+#     def __init__(self, x, y, z):
+#         self.x = x
+#         self.y = y
+#         self.z = z
+#
+#
+# p1 = Point3d(1, 2, 3)
+# print(p1.__dict__)
+
+#   _______Metaclass_____________
 
 
-class Person:
-    name = ValidString
-    surname = ValidString
+# a = 5
+#
+# print(type(a))
 
-    def __init__(self, name, surname):
-        self.name = name
-        self.surname = surname
+# class MyList(list):
+#     def get_length(self):
+#         return len(self)
+
+# MyList = type(
+#     'MyList',
+#     (list,),
+#     dict(get_length=lambda self: len(self))
+# )
+#
+# lst = MyList()
+# lst.append(5)
+# lst.append(7)
+# lst[0] = 3
+# print(lst, lst.get_length())
 
 
-p = Person("Ivan", "Petrov")
-print(p.name)
-print(p.surname)
+# class MyMetaClass(type):
+#     def __new__(cls, name, baser, attr):
+#         print('Создание нового обекта', name)
+#         return super(MyMetaClass, cls).__new__(cls, name, baser, attr)
+#
+#     def __init__(self, baser, attr):
+#         print("Иницианализатор класса", name)
+#
+#
+# class Student(metaclass=MyMetaClass):
+#     def __init__(self, name):
+#         self.name = name
 
-p.name = 23
-print(p.name)
+
+#  ______ создание модулей ___ 29,10 (продолжение)
+
+# from geometry import rect, sq, trian
+
+# from geometry import*
+
+# r1 = rect.Rectangle(1, 2)
+# r2 = rect.Rectangle(3, 4)
+#
+# s1 = sq.Square(10)
+# s2 = sq.Square(20)
+#
+# t1 = trian.Triangle(1, 2, 3)
+# t2 = trian.Triangle(4, 5, 6)
+#
+# shape = [r1, r2, s1, s2, t1, t2]
+# for g in shape:
+#     print(g.get_perimetr())
+
+
+#  _____ Пакет ______ dz
+
+# class Integer:
+#     @classmethod
+#     def verify(cls, coord):
+#         if not isinstance(coord, int) or coord <= 0:
+#             raise TypeError(f"Координата {coord} должна быть положительным целым числом")
+#
+#     def __set_name__(self, owner, name):
+#         self.name = "_" + name
+#
+#     def __get__(self, instance, owner):
+#         return getattr(instance, self.name)
+#
+#     def __set__(self, instance, value):
+#         self.verify(value)
+#         setattr(instance, self.name, value)
+#
+#
+# class Triangle:
+#     a = Integer()
+#     b = Integer()
+#     c = Integer()
+#
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def existence(self):
+#         if (self.a + self.b > self.c) and (self.a + self.c > self.b) and (self.b + self.c > self.a):
+#             return "существует"
+#         else:
+#             return "не существует"
+#
+#     def info(self):
+#         print(f"Треугольник со сторонами ({self.a}, {self.b}, {self.c}) {self.existence()}")
+#
+#
+# t1 = Triangle(2, 5, 6)
+# t2 = Triangle(5, 2, 8)
+# t3 = Triangle(7, 3, 6)
+#
+# t1.info()
+# t2.info()
+# t3.info()
+
+# from car import electrocar
+#
+#
+# def main():
+#     e_car = electrocar.ElectroCar('Tesla', "T", 2018, 99000)
+#     e_car.show_car()
+#     e_car.description_battery()
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+# ______________________________________________________________________________________
+# from math import pi
+#
+#
+# class Rectangle:
+#     def __init__(self, l, h):
+#         self.l = l
+#         self.h = h
+#
+#     def get_rect_perimetr(self):
+#         res = self.l * 2 + self.h * 2
+#         print(f'Периметр прямоугольника: {res}')
+#         return res
+#
+#     def get_rect_area(self):
+#         res = self.l * self.h
+#         print(f'Площадь прямоугольника: {res}')
+#         return res
+#
+#     def print_rect(self):
+#         print(f'Стороны прямоугольника: {self.l}, {self.h}')
+#         return {self.l, self.h}
+#
+#
+# class Circle:
+#     def __init__(self, r):
+#         self.r = r
+#
+#     def get_circlet_circumference(self):
+#         res = 2 * pi * self.r
+#         print(f'Длинна окружности: {round(res, 2)}')
+#         return res
+#
+#     def get_circle_area(self):
+#         res = round(pi * self.r ** 2, 2)
+#         print(f'Площадь круга: {res}')
+#         return res
+#
+#     def print_circle(self):
+#         print(f'Радиус: {self.r}')
+#         return self.r
+#
+#
+# class Cylinder(Rectangle, Circle):
+#     def __init__(self, r, h):
+#         Circle.__init__(self, r)
+#         Rectangle.__init__(self, self.get_circlet_circumference(), h)
+#
+#     def get_volume(self):
+#         res = self.get_circle_area() * self.h
+#         print(f'Объем: {res}')
+#         return res
+#
+#     def print_cylinder(self):
+#         print(f'Радиус основания: {self.r}, высота{self.h}')
+#
+#
+# circles = [Circle(4), Circle(2), Circle(6), Circle(8), Circle(1)]
+# rects = [Rectangle(3, 7), Rectangle(2, 7), Rectangle(19, 12)]
+# Cylinders = [Cylinder(4, 7), Cylinder(2, 5), Cylinder(9, 3), Cylinder(5, 5)]
+#
+# circle_max_s = max(circles, key=lambda c: c.get_circle_area())
+# rect_min_p = min(rects, key=lambda r: r.get_rect_perimetr())
+# cylinders_v = list(map(lambda c: c.get_volume(), cylinders))
+# cylinder_v_avr = sum(cylinders_v) / len(cylinders_v)
+#
+# print(f"Окружность с наибольшей площадью: {circle_max_s.print_circle()}= {round(circle_max_s.get_circle_area(), 2)}")
+# print(f"Прямоугольник с наименьшим периметром: {rect_min_p.print_rect()} = {rect_min_p.get_recct_perimetr()}")
+# print(f"Средний объем цилиндров: {round(cylinders_v_avr, 2)}")
+
+
+#
+# from shapes import rectangle, circle, cylinder
+#
+# circles = [circle.Circle(4), circle.Circle(2), circle.Circle(6), circle.Circle(8), circle.Circle(1)]
+# rects = [rectangle.Rectangle(3, 7), rectangle.Rectangle(2, 7), rectangle.Rectangle(19, 12)]
+# cylinders = [cylinder.Cylinder(4, 7), cylinder.Cylinder(2, 5), cylinder.Cylinder(9, 3), cylinder.Cylinder(5, 5)]
+#
+# circle_max_s = max(circles, key=lambda c: c.get_circle_area())
+# rect_min_p = min(rects, key=lambda r: r.get_rect_perimetr())
+# cylinders_v = list(map(lambda c: c.get_volume(), cylinders))
+# cylinder_v_avr = sum(cylinders_v) / len(cylinders_v)
+# print(f"Окружность с наибольшей площадью: {circle_max_s.print_circle()} = {circle_max_s.get_circle_area()}")
+# print(f'Прямоугольник с наименьшим периметром: {rect_min_p.print_rect()} = {rect_min_p.get_rect_perimetr()}')
+# print(f"Средний объем цилиндров: {round(cylinder_v_avr, 2)}")
+
+#       упаковка данных
+#  _____Сериализация__________________________30,10
+#       десериализация
+
+
+#  В стандартной библиотеке питон
+#  marshal (.pyc)
+#  pickle
+#  json
+
+import pickle
+
+
+# filename = "basket.txt"
+#
+# shop_list = {
+#     'фрукты': ["яблоки", "манго"],
+#     'овощи': ["морковь"],
+#     'бюджет': 100
+# }
+#
+# with open(filename, 'wb') as fh:
+#     pickle.dump(shop_list, fh)
+#
+# with open(filename, 'rb') as fh:
+#     shop_list_2 = pickle.load(fh)
+#
+# print(shop_list_2)
+
+class Test:
+    num = 35
+    st = "Привет"
+    lst = [1, 2, 3]
+    dct = {'first': "a", "second": 2, 'Third': [1, 2, 3]}
+    tlp = (22, 23)
+
+    def __str__(self):
+        return f"Число: {Test.num}\nСтрока: {Test.st}\nСписок: {Test.lst}\nСловарь: {Test.dct}\nКортеж: {Test.tlp}"
+
+
+obj = Test()
+
+d_save = pickle.dumps(obj)
+print(f'Сереализация в строку:\n{d_save}\n')
+
+d_read = pickle.loads(d_save)
+print(f'Десереализация в строку:\n{d_read}\n')
+
