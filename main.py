@@ -4839,8 +4839,7 @@
 #  pickle
 #  json
 
-import pickle
-
+# import pickle
 
 # filename = "basket.txt"
 #
@@ -4858,22 +4857,890 @@ import pickle
 #
 # print(shop_list_2)
 
-class Test:
-    num = 35
-    st = "Привет"
-    lst = [1, 2, 3]
-    dct = {'first': "a", "second": 2, 'Third': [1, 2, 3]}
-    tlp = (22, 23)
+# class Test:
+#     num = 35
+#     st = "Привет"
+#     lst = [1, 2, 3]
+#     dct = {'first': "a", "second": 2, 'Third': [1, 2, 3]}
+#     tlp = (22, 23)
+#
+#     def __str__(self):
+#         return f"Число: {Test.num}\nСтрока: {Test.st}\nСписок: {Test.lst}\nСловарь: {Test.dct}\nКортеж: {Test.tlp}"
+#
+#
+# obj = Test()
+#
+# d_save = pickle.dumps(obj)
+# print(f'Сереализация в строку:\n{d_save}\n')
+#
+# d_read = pickle.loads(d_save)
+# print(f'Десереализация в строку:\n{d_read}\n')
 
-    def __str__(self):
-        return f"Число: {Test.num}\nСтрока: {Test.st}\nСписок: {Test.lst}\nСловарь: {Test.dct}\nКортеж: {Test.tlp}"
+
+#  12.11 2022____________________
+# class Test2:
+#     def __init__(self):
+#         self.a = 35
+#         self.b = 'test'
+#         self.c = lambda x: x * x
+#
+#     def __str__(self):
+#         return f'{self.a} {self.b} {self.c(2)}'
+#
+#     def __getstate__(self):
+#         attr = self.__dict__.copy()
+#         del attr['c']
+#         return attr
+#
+#     def __setstate__(self, state):
+#         self.__dict__ = state
+#         self.c = lambda x: x * x
+#
+#
+# item1 = Test2()
+# item2 = pickle.dumps(item1)
+# item3 = pickle.loads(item2)
+# print(item3.__dict__)
+# print(item3)
+
+# class TextReader:
+#     def __init__(self, filename):
+#         self.filename = filename
+#         self.file = open(filename, encoding='utf-8')
+#         self.count = 0
+#
+#     def read_line(self):
+#         self.count += 1
+#         line = self.file.readline()
+#         if not line:
+#             return None
+#         if line.endswith("\n"):
+#             line = line[:-1]
+#             return f"{self.count}: {line}"
+#
+#     def __getstate__(self):
+#         state = self.__dict__.copy()
+#         del state['file']
+#         return state
+#
+#     def __setstate__(self, state):
+#         self.__dict__.update(state)
+#         file = open(self.filename, encoding='utf-8')
+#         for i in range(self.count):
+#             file.readline()
+#         self.file = file
+#
+#
+# reader = TextReader("hello.txt")
+# print(reader.read_line())
+# print(reader.read_line())
+#
+# new_reader = pickle.loads(pickle.dumps(reader))
+# print(new_reader.read_line())
+# import json
+
+# date = {
+#     'first_name': 'Jane',
+#     'last_name': 'Don',
+#     'hobbies': ('running', 'sky diving', 'singing'),
+#     'age': 35,
+#     'children': [
+#         {
+#             'first_name': 'Alice',
+#             'age': 6
+#         },
+#         {
+#             'first_name': 'Bob',
+#             'age': 8
+#
+#         }
+#     ]
+# }
+# print(date)
+# with open('date_file.json', 'w') as fw:
+#     json.dump(date, fw, indent=4)
+#
+# with open('date_file.json', 'r') as fw:
+#     data = json.load(fw)
+#     print(data)
+
+# json_string = json.dumps(date, sort_keys=True)
+# print(json_string)
+#
+# date = json.loads(json_string)
+# print(date)
+#
+# x = {
+#     "name": "Виктор"
+#
+# }
+# y = {
+#     "name": "Виктор"
+# }
+#
+# print(json.dumps(x))
+# print(json.loads(json.dumps(x)))
+# print(json.dumps(y, ensure_ascii=False))
+
+# from random import choice
+#
+#
+# def gen_person():
+#     name = ''
+#     tel = ''
+#
+#     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+#     nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+#
+#     while len(name) != 7:
+#         name += choice(letters)
+#     # print(name)
+#
+#     while len(tel) != 10:
+#         tel += choice(nums)
+#     # print(tel)
+#
+#     person = {
+#         'name': name,
+#         'tel': tel
+#     }
+#     return person
+#
+#
+# def write_json(person_dict):
+#     try:
+#         data = json.load(open('persons.json'))
+#     except FileExistsError:
+#         date = []
+#
+#     data.append(person_dict)
+#
+#     with open('persons.json', 'w') as f:
+#         json.dump(data, f, indent=2)
+#
+#
+# for i in range(5):
+#     write_json(gen_person())
+
+# import json
+#
+#
+# class Student:
+#     def __init__(self, name, marks):
+#         self.name = name
+#         self.marks = marks
+#
+#     def __str__(self):
+#         a = ""
+#         for i in self.marks:
+#             a += str(i) + ", "
+#         return f"Студент: {self.name} {a[:-2]}"
+#
+#     def add_mark(self, mark):
+#         self.marks.append(mark)
+#
+#     def delete_mark(self, index):
+#         self.marks.pop(index)
+#
+#     def edit_mark(self, index, new_mark):
+#         self.marks[index] = new_mark
+#
+#     def average_mark(self):
+#         return round(sum(self.marks) / len(self.marks), 2)
+#
+#     @classmethod
+#     def dump_to_json(cls, stud, filename):
+#         try:
+#             data = json.load(open(filename))
+#         except FileNotFoundError:
+#             data = []
+#
+#         data.append({'name': stud.name, 'marks': stud.marks})
+#         with open(filename, 'w') as f:
+#             json.dump(data, f, indent=2)
+#
+#     @classmethod
+#     def load_from_file(cls, filename):
+#         with open(filename, 'r') as f:
+#             print(json.load(f))
+#
+
+# class Group:
+#     def __init__(self, students, group):
+#         self.students = students
+#         self.group = group
+#
+#     def __str__(self):
+#         a = ''
+#         for i in self.students:
+#             a += str(i) + "\n"
+#         return f"Группа: {self.group}\n{a}"
+#
+#     def add_student(self, student):
+#         self.students.append(student)
+#
+#     def remove_student(self, index):
+#         return self.students.pop(index)
+#
+#     # class Group:
+#     #     def __init__(self, students, group):
+#     #         self.students = students
+#     #         self.group = group
+#     #
+#     #     def __str__(self):
+#     #         a = ''
+#     #         for i in self.students:
+#     #             a += str(i) + "\n"
+#     #             return f"Группа: {self.group}\n{a}"
+#     #
+#     #     def add_student(self, student):
+#     #         self.students.append(student)
+#     #
+#     #     def remove_student(self, index):
+#     #         return self.students.pop(index)
+#     @classmethod
+#     def change_group(cls, group1, group2, index):
+#         return group2.add_student(group1.remove_student(index))
+#
+#     @classmethod
+#     def dump_group(cls, file, group):
+#         try:
+#             data = json.load(open(file))
+#         except FileNotFoundError:
+#             data = []
+#
+#         with open(file, 'w') as f:
+#             stud_list = []
+#             for i in group.stdents:
+#                 stud_list.append([i.name, i.marks])
+#
+#             data.append(stud_list)
+#             json.dump(data, f, indent=2)
 
 
-obj = Test()
+#  _____________________________________________
+# class Group:
+#     def __init__(self, students, group):
+#         self.students = students
+#         self.group = group
+#
+#     def __str__(self):
+#         a = ''
+#         for i in self.students:
+#             a += str(i) + "\n"
+#         return f"Группа: {self.group}\n{a}"
+#
+#     def add_student(self, student):
+#         self.students.append(student)
+#
+#     def remove_student(self, index):
+#         return self.students.pop(index)
+#
+#     @classmethod
+#     def change_group(cls, group1, group2, index):
+#         return group2.add_student(group1.remove_student(index))
+#
+#     @classmethod
+#     def dump_group(cls, file, group):
+#         try:
+#             data = json.load(open(file))
+#         except FileNotFoundError:
+#             data = []
+#
+#         with open(file, 'w') as f:
+#             stud_list = []
+#             for i in group.students:
+#                 stud_list.append([i.name, i.marks])
+#             data.append(stud_list)
+#             json.dump(data, f, indent=2)
+#
+#     @classmethod
+#     def upload_group(cls, file):
+#         with open(file, 'r') as f:
+#             print(json.load(f))
+#
+#
+# st1 = Student('Bodnya', [5, 4, 3, 4, 5, 3])
+# st2 = Student('Nikolaenko', [2, 3, 5, 4, 2])
+# st3 = Student('Birukov', [3, 5, 3, 2, 5, 4])
+# sts = [st1, st2]
+# Student.load_from_file('student.json')
 
-d_save = pickle.dumps(obj)
-print(f'Сереализация в строку:\n{d_save}\n')
+# Student.dump_to_json(st1, 'student.json')
+# Student.dump_to_json(st2, 'student.json')
+# my_group = Group(sts, "ГК Python")
+# print(my_group)
+# Group.dump_group('group.json', my_group)
+# my_group.add_student(st3)
+# print(my_group)
+# my_group.remove_student(1)
+# print(my_group)
+#
+# group22 = [st3]
+# my_group2 = Group(group22, "ГК WEB")
+# print(my_group2)
+# Group.dump_group('group.json', my_group2)
+# Group.upload_group('group.json')
 
-d_read = pickle.loads(d_save)
-print(f'Десереализация в строку:\n{d_read}\n')
 
+# _________________________________________
+
+# Group.change_group(my_group, my_group2, 0)
+# print(my_group)
+# print(my_group2)
+
+# st1 = Student('Bodnya', [5, 4, 3, 4, 5, 3])
+# print(st1)
+# st1.add_mark(4)
+# print(st1)
+# st1.delete_mark(3)
+# print(st1)
+# st1.edit_mark(2, 4)
+# print(st1)
+# print(st1.average_mark())
+
+# import requests
+# import json
+#
+# response = requests.get('https://jsonplaceholder.typicode.com/todos')
+# todos = json.loads(response.text)
+# # print(todos[:10])
+# todos_by_user = {}
+#
+# for todo in todos:
+#     if todo['completed']:
+#         try:
+#             todos_by_user[todo['userId']] += 1
+#         except KeyError:
+#             todos_by_user[todo['userId']] = 1
+#
+# print(todos_by_user)
+#
+# top_users = sorted(todos_by_user.items(), key=lambda x: x[1], reverse=True)
+# print(top_users)
+#
+# max_complete = top_users[0][1]
+# print(max_complete)
+#
+# users = []
+# for user, num_complete in top_users:
+#     if num_complete < max_complete:
+#         break
+#     users.append(str(user))
+#
+# print(users)
+# max_users = ' and '.join(users)
+# s = 's' if len(users) > 1 else ""
+# print(f'user{s} {max_users} completed {max_complete} Todos')
+#
+#
+# def keep(todo):
+#     is_complete = todo['completed']
+#     has_max_count = str(todo['userId']) in users
+#     return is_complete and has_max_count
+#
+#
+# with open('filtered_file.json', 'w') as data_file:
+#     filtered_todos = list(filter(keep, todos))
+#     json.dump(filtered_todos, data_file, indent=2)
+# with open('filtered_file.json', 'r') as fw:
+#     data = json.load(fw)
+#     print(data)
+
+import csv
+
+# with open('data.csv') as r_file:
+#     file_reader = csv.reader(r_file, delimiter=';')
+#     count = 0
+#     for row in file_reader:
+#         if count == 0:
+#             print(f"Файл содержит столбцы: {', '.join(row)}")
+#         else:
+#             print(f'    {row[0]}-{row[1]}.Родился в {row[2]} году.')
+#         count += 1
+#     print(f'Всего в файле {count} строки.')
+
+# with open('data.csv') as r_file:
+#     fietd_names = ['Имя','Профессия', 'Год рожденния']
+#     file_reader = csv.DictReader(r_file, delimiter=';')
+#     count = 0
+#     for row in file_reader:
+#         if count == 0:
+#             print(f"Файл содержит столбцы: {', '.join(row)}")
+#         print(f"{row['Имя']} - {row['Профессия']}. Родился  в {row['Год рождения']} году.")
+#         count += 1
+
+
+# with open('student.csv', 'w') as f:
+#     writer = csv.writer(f, delimiter=";", lineterminator ='\r')
+#     writer.writerow(['Имя', 'Класс', 'Возраст'])
+#     writer.writerow(['Женя', '9', '15'])
+#     writer.writerow(['Маша', '11', '18'])
+
+# data = [['hostname', 'vendor', 'model', 'location'],
+#         ['sw1', 'Cisco', '3750', 'London, Best str'],
+#         ['sw2', 'Cisco', '3850', 'Liverpool, Better str'],
+#         ['sw3', 'Cisco', '3650', 'Liverpool, Better str'],
+#         ['sw4', 'Cisco', '3650', 'London, Best str']]
+#
+# with open('data_new.csv', 'w') as f:
+#     writer = csv.writer(f, delimiter=",", lineterminator='\r', quoting=csv.QUOTE_NONNUMERIC)
+#     # for row in data:
+#     #     writer.writerow(row)
+#     writer.writerows(data)
+#
+# with open('data_new.csv') as f:
+#     print(f.read())
+
+# with open('stud1.csv') as f:
+#     names = ['Имя', 'Возраст']
+#     file_writer = csv.DictWriter(f, delimiter=';',lineterminator='r', fieldnames=names)
+#     file_writer.writeheader()
+#     file_writer.writerow({'Имя':"Саша","Возраст":'6'}
+#     file_writer.writerow({'Имя':"Саша","Возраст":'6'}
+#     file_writer.writerow({'Имя':"Саша","Возраст":'6'}
+# data = [{
+#     'hostname': 'sw1',
+#     'location': 'London',
+#     'model': '3750',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw2',
+#     'location': 'Liverpool',
+#     'model': '3850',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw3',
+#     'location': 'Liverpool',
+#     'model': '3650',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw4',
+#     'location': 'London',
+#     'model': '3650',
+#     'vendor': 'Cisco'
+# }]
+# фwцith open ('dictwriter.csv', 'w') as f:цф
+#     writer = csv.DictWriter(f, fieldnames=list(data[0].keys())),ф
+#     writer.writeheader()
+
+
+# from bs4 import BeautifulSoup
+
+# f = open('index.html', encoding="utf-8").read()
+# soup = BeautifulSoup(f, 'html.parser')
+
+# row = soup.find('div', class_='name')
+# row = soup.find_all('div', class_='name')
+# row = soup.find_all('div', class_='row')[1].find('div', class_='links').text
+# row = soup.find('div', {"class": 'name'})
+# row = soup.find('div', {"data-set": 'salary'})
+# row = soup.find('div', text="Alena").parent
+# row = soup.find('div', text="Alena").find_parent(class_='row')
+# row = soup.find('div', id='whois3').find_next_sibling()
+# row = soup.find('div', id='whois3').find_previous_sibling()
+# def get_copywriter(tag):
+#     whois = tag.find('div', class_='whois').text
+#     if "Copywriter" in whois:
+#         return tag
+#     return None
+#
+#
+# f = open('index.html', encoding="utf-8").read()
+# soup = BeautifulSoup(f, 'html.parser')
+# copywriter = []
+# row = soup.find_all('div', class_='row')
+# for i in row:
+#     cw = get_copywriter(i)
+#     if cw:
+#         copywriter.append(cw)
+# print(copywriter)
+#
+
+import requests
+import requests.models
+from bs4 import BeautifulSoup
+import re
+import csv
+
+# req = requests.get("https://ru.wordpress.org/")
+# # req.encoding = 'utf-8'
+# print(req.text)
+
+
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, 'lxml')
+#     p1 = soup.find('header', id="masthead").find('p', class_="site-title")
+#     return p1
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/"
+#     print(get_data(get_html(url)))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def refined(s):
+#     res = re.sub(r'\D+', '', s)
+#     return res
+#
+#
+# def write_csv(data):
+#     with open('plugins.csv', 'a')as f:
+#         writer = csv.writer(f, lineterminator='\r')
+#         writer.writerow((data['name'], data['url'], data['rating']))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, 'lxml')
+#     p1 = soup.find_all('section', class_='plugin-section')[1]
+#     plugins = p1.find_all('article')
+#
+#     for plugin in plugins:
+#         name = plugin.find('h3').text
+#         url = plugin.find('h3').find('a')['href']
+#         rating = plugin.find('span', class_='rating-count').find('a').text
+#         r = refined(rating)
+#
+#         data = {'name': name, 'url': url, 'rating': r}
+#         write_csv(data)
+#
+#
+#
+#     # return len(plugins)
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/plugins"
+#     get_data(get_html(url))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+#  __________________26.11.2022__________________________________
+# import json
+#
+# data = {}
+#
+#
+# class CountryCapital:
+#     def __init__(self, country, capital):
+#         self.country = country
+#         self.capital = capital
+#         data[self.country] = self.capital
+#
+#     def __str__(self):
+#         return f'{self.country}:{self.capital}'
+#
+#     @classmethod
+#     def add_country(cls, new_country, new_capital, filename):
+#         try:
+#             data1 = json.load(open(filename))
+#         except FileNotFoundError:
+#             data1 = {}
+#
+#         data1[new_country] = new_capital
+#
+#         with open(filename, 'w') as f:
+#             json.dump(data1, f, indent=2, ensure_ascii=False)
+#
+#     @classmethod
+#     def delete_country(cls, del_country, filename):
+#         try:
+#             data1 = json.load(open(filename))
+#         except FileNotFoundError:
+#             data1 = {}
+#
+#
+#             del data1[del_country]
+#
+#         with open(filename, 'w') as f:
+#             json.dump(data1, f, indent=2, ensure_ascii=False)
+#
+#     @classmethod
+#     def search_data(cls, country, filename):
+#         try:
+#             data1 = json.load(open(filename))
+#         except FileNotFoundError:
+#             data1 = {}
+#
+#         if country in data1:
+#             print(f'Страна {country} столица {data1[country]} есть в словаре!')
+#         else:
+#             print(f'Страна {country} отсутствует в словаре')
+#
+#     @classmethod
+#     def change_capital(cls, country, new_value, filename):
+#         try:
+#             data1 = json.load(open(filename))
+#         except FileNotFoundError:
+#             data1 = {}
+#
+#         data1[country] = new_value
+#         with open(filename, 'w') as f:
+#             json.dump(data1, f, indent=2, ensure_ascii=False)
+#
+#     @classmethod
+#     def load_from_file(cls, filename):
+#         with open(filename, "r") as f:
+#             print(json.load(f))
+#
+#
+# index = ''
+# while index != 6:
+#     try:
+#         print('*' * 40)
+#         index = int(input('Выбор действия: \n1 - добавление данных\n'
+#                           '2 - удаление данных\n3 - поиск данных\n4 - редактирование данных\n5 - просмотр действий\n'
+#                           '6 - завершение работы \nВвод: '))
+#         if index == 1:
+#             country_name = input('Введите название страны(с заглавной буквы) ')
+#             capital_name = input('Введите название столицы страны(с заглавной буквы) ')
+#             CountryCapital.add_country(country_name, capital_name, 'list_capital.json')
+#             print('Файл сохранен')
+#
+#         if index == 2:
+#             capital_name = input('Введите страну для удаление(с заглавной буквы) ')
+#             CountryCapital.delete_country(capital_name, 'list_capital.json')
+#             print('Файл сохранен')
+#
+#         if index == 3:
+#             country_name = input('Введите название страны, которую хотите изменить(с заглавной буквы): ')
+#             CountryCapital.search_data(country_name, 'list_capital.json')
+#         if index == 4:
+#             country_name = input('Введите название страны, которую хотите изменить(с заглавной буквы): ')
+#             new_capital = input('Введите новое название столицы(с заглавной буквы): ')
+#             CountryCapital.change_capital(country_name, new_capital, 'list_capital.json')
+#             print('Файл сохранен')
+#         if index == 5:
+#             CountryCapital.load_from_file('load_from_file')
+#
+#
+#     except IndexError:
+#         break
+
+
+# from bs4 import BeautifulSoup
+# import requests
+# import csv
+#
+#
+# def get_html(url):
+#     r = requests.get(url)
+#     return r.text
+#
+#
+# def write_csv(data):
+#     with open('plugins1.csv', 'a') as f:
+#         writer = csv.writer(f, lineterminator="\r", delimiter=";")
+#         writer.writerow((data['name'],
+#                          data['url'],
+#                          data['snippet'],
+#                          data['active_install'],
+#                          data['tested']))
+#
+#
+# def refine_cy(s):
+#     return s.split()[-1]
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, 'lxml')
+#     elements = soup.find_all("article", class_="plugin-card")
+#     for el in elements:
+#         try:
+#             name = el.find('h3').text
+#         except ValueError:
+#             name = ''
+#
+#         try:
+#             url = el.find('h3').find("a").get('href')
+#         except ValueError:
+#             url = ''
+#
+#         try:
+#             snippet = el.find('div', class_='entry-excerpt').text.strip()
+#         except ValueError:
+#             snippet = ''
+#
+#         try:
+#             active = el.find("span", class_="active-installs").text.strip()
+#         except ValueError:
+#             active = ''
+#
+#         try:
+#             c = el.find("span", class_="tested-with").text.strip()
+#             cy = refine_cy(c)
+#         except ValueError:
+#             cy = ''
+#
+#         data = {
+#             'name': name,
+#             'url': url,
+#             'snippet': snippet,
+#             'active_install': active,
+#             'tested': cy
+#         }
+#
+#         write_csv(data)
+#
+#
+# def main():
+#     for i in range(2, 5):
+#         url = f"https://ru.wordpress.org/plugins/browse/blocks/page/{i}/"
+#         get_data(get_html(url))
+#
+#
+# if __name__ == '__main__':
+#     main()
+# from bs4 import BeautifulSoup
+# import requests
+# from parse import Parser
+#
+#
+# def main():
+#     pars = Parser("https://www.ixbt.com/live/index/news/", "news.txt")
+#     pars.run()
+#
+#
+# if __name__ == '__main__':
+#     main()
+#  __________________________________27.11_
+# import socket
+# from view import index, blog
+#
+# URLS = {
+#     "/": index,
+#     "/blog": blog
+# }
+#
+#
+# def parse_request(request):
+#     parsed = request.split()
+#     method = parsed[0]  # GET
+#     url = parsed[1]  # / или /blog
+#     return method, url
+#
+#
+# def generate_headers(method, url):
+#     if method != "GET":
+#         return 'HTTP/1.1 405 Method Not Allowed!\n\n', 405
+#     if url not in URLS:
+#         return 'HTTP/1.1 404 Page Not Found!\n\n', 404
+#     return 'HTTP/1.1 200 OK!\n\n', 200
+#
+#
+# def generate_content(code, url):
+#     if code == 404:
+#         return '<h1>404</h1><h3>Page not found!</h3>'
+#     elif code == 405:
+#         return '<h1>405</h1><h3>Method Not Allowed!</h3>'
+#     return URLS[url]()
+#
+#
+# def generate_response(request):
+#     method, url = parse_request(request)
+#     headers, code = generate_headers(method, url)
+#     body = generate_content(code, url)
+#     return (headers + body).encode()
+#
+#
+# def run():
+#     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#     server_socket.bind(('127.0.0.1', 5000))
+#     server_socket.listen()
+#
+#     while True:
+#         client_socket, addr = server_socket.accept()
+#         request = client_socket.recv(1024)
+#         print(f"Клиент: {addr} => \n{request.decode('utf-8')}\n")
+#
+#         response = generate_response(request.decode())
+#         client_socket.sendall(response)
+#         client_socket.close()
+#
+#
+# if __name__ == '__main__':
+#     run()
+
+
+# import sqlite3 as sq
+#
+# with sq.connect('profile.bd') as con:
+#     cur = con.cursor()
+#     cur.execute("DROP TABLE users")
+# cur.execute("""CREATE TABLE IF NOT EXISTS users(
+# id INTEGER PRIMARY KEY AUTOINCREMENT,
+# name TEXT NOT NULL,
+# summa REAL,
+# data TEXT
+# )""")
+
+# import sqlite3 as sq
+#
+# with sq.connect('users.db') as con:
+#      cur = con.cursor()
+#      # cur.execute("""
+#      # CREATE TABLE IF NOT EXISTS person(
+#      # id INTEGER PRIMARY KEY AUTOINCREMENT,
+#      # name TEXT NOT NULL,
+#      # phone BLOB NOT NULL DEFAULT '+79090000000',
+#      # age INTEGER NOT NULL CHECK (age > 0 AND age < 100),
+#      # email TEXT UNIQUE
+#      # )
+#      # """)
+# cur.execute("""
+# ALTER TABLE person
+# RENAME TO person_table
+# """)
+# cur.execute("""
+# ALTER TABLE person_table
+# ADD COLUMN address TEXT;
+# """)
+# cur.execute("""
+# ALTER TABLE person_table
+# RENAME COLUMN address TO home_address;
+# """)
+# cur.execute("""
+# DROP T&&&&&&&&&&&&????????????????????????
+# """)
+#
+# cur.execute("""
+# INSERT INTO person (email, name, age)
+# VALUES (1, 'Ирина', '+75052031166', 23, 'irina@gmail.com'
+#  """)
+
+
+import sqlite3 as sq
+
+with sq.connect('db_4.db') as con:
+    cur = con.cursor()
+    cur.execute("""
+     SELECT *
+     FROM Ware
+     ORDER BY PRICE DESC
+     LIMIT 2, 5;
+     """)
+
+    # res = cur.fetchone()
+    # print(res)
+    res = cur.fetchmany(2)
+    print(res)
+    # res = cur.fetchall()
+    # print(res)
+    # for res in cur:
+    #      print(res)
