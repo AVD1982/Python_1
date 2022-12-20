@@ -1,0 +1,106 @@
+1. Определите для какого товара код поставщика не определен
+
+SELECT * 
+FROM Ware
+WHERE ID_salespeople is NULL
+
+2 Определить все товары, которые производяться в Украине 
+SELECT Produce, ID,Country 
+FROM Ware
+WHERE Country = 'Украина'
+3 Удалите из таблицы СТРОКУ  С поставщиком из Германии
+DELETE FROM Ware
+WHERE Country='Германия'
+4 Заменить страну производителя Польша на Россию 
+UPDATE Ware
+SET Country='Россия'
+WHERE Country='Польша'
+5 Востановить строки, удаленные в 3 пункте
+
+INSERT INTO Ware(ID, Produce, Material, Color, Size, Country, ID_salespeople, Price, Count, REM)
+--VALUES (1026, '(F8E157eaLRG)', 'полиэстер/нейлон' , 'ч', '38.1х28х70','Германия' , 2014, 126, 0, 'Stone Street Case(15")')
+--VALUES (1254, 'CC06', 'нейлон' , 'ч', '38х29х70','Германия' , 2011, 110, 6, 'NylonComputer Case(15")')
+--VALUES (1049, 'KCB-03BKP', 'кожзам' , 'ч', '40х30х8,5','Германия' , 2001, 325, 14, 'SystemCase(15")')
+--VALUES (1001, 'CKN-002', 'кожзам' , 'ч', '39х30х6.4','Германия' , 2001, 126, 2, 'Notebrief Case(13.2")')
+--VALUES (1036, 'CN01', 'полиэстер' , 'ч', '39х30х5','Германия' , 2011, 435, 32, 'Computer Case(15"/15.4")')
+VALUES (1017, 'PON-303BK', 'полиэстер' , 'ч', '44.5х33.7х5.1','Германия' , 2015, 110, 29, 'Large Expandable computer brief(17")')
+
+6. Вывести товар не черного цвета
+SELECT ID, Produce, Price 
+FROM Ware
+WHERE Color!='ч'
+7вставить строку
+INSERT INTO Ware(Produce, REM, Material, Color, Size, ID_salespeople, Country, ID)
+VALUES ('NTC-117BK','Micro Camera Case','нейлон' , 'ч', '13,3х8,3х5,7', 2016,'Украина', 1046)
+
+8ВСТАВИТЬ СТРОКУ
+INSERT INTO Ware(Produce, REM, Material, Color, Size,ID)
+VALUES ('POC-463BK','Compact Camera Case','полиэстер' , 'ч', '11х7х4,5',43)
+
+9 вывести весь товар который поставляется продавцом с кодом 2065 из России
+SELECT ID, Produce, Price 
+FROM Ware
+WHERE ID_salespeople=2065 AND Country='Россия'
+
+10вывести товар цена за который находится в диапазоне от 200 до 345
+SELECT ID, Produce, Price 
+FROM Ware
+WHERE Price BETWEEN 200 AND 345
+
+11определите все сумки из кожи с размером не менее 40*30*5
+SELECT ID, Produce, Price, Material, Size 
+FROM Ware
+WHERE Size>('40x30x5') AND Material='кожа'
+
+12 Написать запрос, который выводит все сумки и коды их поставщиков, если товара меньше чем на 1200грн
+SELECT ID, Produce, Price, Count, Material, Size 
+FROM Ware
+WHERE Price*Count<1200
+
+13 написать запрос, который заменит код поставщика на 2000, если на складе хранится товара менее чем на 500 грн. по данному поставщику
+UPDATE Ware
+SET ID_salespeople=2000
+WHERE Price*Count<500
+
+14вывести все кожанные сумки, колличествокоторых менее 5 шт и общая сумма товара не превышает 450грн
+SELECT ID, Produce, Price, Count, Material, Size 
+FROM Ware
+WHERE Price*Count>450 AND Material='кожа' AND Count<5
+
+15Напишите запрос, который выведет все нейлоновые сумки цена на которые не превышает  250грн
+SELECT ID, Produce, Price, Count, Material, Size 
+FROM Ware
+WHERE Price<250 AND Material='нейлон'
+
+16 замените материел нейлон на брезент, если сумка стоит менее 200грн
+UPDATE Ware
+SET Material='брезент'
+WHERE Price<200 AND Material='нейлон'
+
+
+17 напишите запрос, который выводит все сумки у которых есть косметички
+SELECT  Price, Color, Material, Country, REM
+FROM Ware
+WHERE REM LIKE '%косметичка'
+
+18 напишите запрос который покажет все кожанные сумки черного цвета китайского производства
+SELECT ID, Produce, Price, Color, Material, Size,Country
+FROM Ware
+WHERE Country='Китай' AND Color='ч'
+
+19напишите запрос, который покажет все сумки с размером более 15 дюймов
+
+20 напишите запрос, который покажет всех поставщиков сумок черноо цвета
+SELECT  Price, Color, Material, Country
+FROM Ware
+WHERE Color='ч'
+
+21 замените материал полиэстер у сумок китайского производства на нейлон
+UPDATE Ware
+SET Material='нейлон'
+WHERE Country='Китай'
+
+22в записях с кодом товара: 1015, 1041, 1032, 1010 материал нейлон заменить на полиэстер если страна производитель КИТАЙ
+UPDATE Ware
+SET Material='полиэстер'
+WHERE Country='Китай' AND ID IN (1015, 1041, 1032, 1010)

@@ -5724,23 +5724,109 @@ import csv
 # VALUES (1, 'Ирина', '+75052031166', 23, 'irina@gmail.com'
 #  """)
 
+#
+# import sqlite3 as sq
+#
+# with sq.connect('db_4.db') as con:
+#     cur = con.cursor()
+#     cur.execute("""
+#      SELECT *
+#      FROM Ware
+#      ORDER BY PRICE DESC
+#      LIMIT 2, 5;
+#      """)
+#
+#     # res = cur.fetchone()
+#     # print(res)
+#     res = cur.fetchmany(2)
+#     print(res)
+#     # res = cur.fetchall()
+#     # print(res)
+#     # for res in cur:
+#     #      print(res)
+
+# import sqlite3 as sq
+
+# cars = [
+#     ('BMV', 54000),
+#     ('CHEVROLE', 24000),
+#     ('MATIZ', 34000),
+#     ('GAZ', 14000),
+#     ('VAZ', 4000)
+# ]
+# con = None
+# try:
+#     con = sq.connect('cars.db')
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#         cars_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER);
+#         BEGIN;
+#         INSERT INTO cars VALUES(NULL, 'Renault', 22000);
+#         UPDATE cars SET price = price + 140;
+#     """)
+#     con.commit()
+#
+# except sq.Error as e:
+#     if con:
+#         con.rollback()
+#     print('Ошибка выполнения запроса')
+#
+# finally:
+#     if con:
+#         con.close()
+
+
+# with sq.connect('cars.db') as con:
+#     cur = con.cursor()
+#     cur.execute("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#         cars_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER)
+#     """)
+#
+#     cur.executescript("""
+#     DELETE FROM cars WHERE model LIKE 'B%';
+#     UPDATE cars SET price = price + 100;
+#     """)
+
+# cur.execute("UPDATE cars SET price = :Price WHERE model LIKE 'B%'", {'Price': 0})
+
+# cur.executemany("INSERT INTO cars VALUES(NULL, ?, ?)", cars)
+
+# for car in cars:
+#     cur.execute("INSERT INTO cars VALUES(NULL, ?, ?)", car)
+
+# cur.execute("INSERT INTO cars VALUES(1, 'Renault', 22000)")
+# cur.execute("INSERT INTO cars VALUES(2, 'Volvo', 29000)")
+# cur.execute("INSERT INTO cars VALUES(3, 'Mers', 57000)")
+# cur.execute("INSERT INTO cars VALUES(4, 'Opel', 35000)")
+# cur.execute("INSERT INTO cars VALUES(5, 'Audy', 52000)")
+
+# con.commit ()
+# con.close()
 
 import sqlite3 as sq
 
-with sq.connect('db_4.db') as con:
+with sq.connect('cars.db') as con:
     cur = con.cursor()
-    cur.execute("""
-     SELECT *
-     FROM Ware
-     ORDER BY PRICE DESC
-     LIMIT 2, 5;
-     """)
+    cur.executescript("""
+    CREATE TABLE IF NOT EXISTS cars(
+        cars_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        model TEXT,
+        price INTEGER);
+    CREATE TABLE IF NOT EXISTS cost(
+        name TEXT, tr_in INTEGER, buy INTEGER
+        )
+    """)
 
-    # res = cur.fetchone()
-    # print(res)
-    res = cur.fetchmany(2)
-    print(res)
-    # res = cur.fetchall()
-    # print(res)
-    # for res in cur:
-    #      print(res)
+    cur.execute("INSERT INTO cars VALUES(NULL, 'Запорожец', 1000)")
+    last_roll_id = cur.lastrowid   # lastrowid -возвращает ай ди последней записи
+    buy_car_id = 2
+    cur.execute("INSERT INTO cost VALUES('Илья', ?, ?)", (last_roll_id, buy_car_id))
+
+
+
