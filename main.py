@@ -6224,13 +6224,13 @@ import csv
 #
 # print(msg)
 
-from jinja2 import Environment, FileSystemLoader
-
-subs = ["культура ", "политика", "спорт", "наука"]
-file_loader = FileSystemLoader("templates")
-env = Environment(loader=file_loader)
-
-tm = env.get_template('about.html')
-msg = tm.render(list_table=subs)
-
-print(msg)
+# from jinja2 import Environment, FileSystemLoader
+#
+# subs = ["культура ", "политика", "спорт", "наука"]
+# file_loader = FileSystemLoader("templates")
+# env = Environment(loader=file_loader)
+#
+# tm = env.get_template('about.html')
+# msg = tm.render(list_table=subs)
+#
+# print(msg)
