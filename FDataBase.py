@@ -21,11 +21,16 @@ class FDataBase:
 
     def add_post(self, title, text, url):
         try:
-            self.__cur.execute("SELECT COUNT() AS 'count' FROM POSTS where url LIKE ?", (url,))
-            res = self.__cur.fetchone
+            self.__cur.execute("SELECT COUNT() as 'count' FROM posts WHERE url LIKE ?", (url,))
+            res = self.__cur.fetchone()
             if res['count'] > 0:
-                print("Статья с таким гкд уже существует")
+                print("Статья с таким url уже существует")
                 return False
+            
+        # base = url_for('static', filename='images')
+        # text = re.sub(r'(?P<tag><img\s+[^>]*src=)(?P<quote>[\'"])(?P<url>.+?)(?P=quote)>',
+        #                   r'\g<tag>' + base + r"/\g<url>>", text)
+        #
             tm = math.floor(time.time())
             self.__cur.execute("INSERT INTO posts VALUES(NULL, ?, ?, ?, ?)", (title, text, url, tm))
             self.__db.commit()
@@ -47,7 +52,7 @@ class FDataBase:
 
     def get_post(self, alias):
         try:
-            self.__cur.execute(f"SELECT title, text FROM posts WHERE id={alias} LIMIT 1")
+            self.__cur.execute(f"SELECT title, text FROM posts WHERE url='{alias}' LIMIT 1")
             res = self.__cur.fetchone()
             if res:
                 return res

@@ -57,21 +57,20 @@ def add_post():
             if not res:
                 flash("Ошибка добавления статьи", category="error")
             else:
-                flash("Статья добавленна успешно", category="success")
+                flash("Статья добавлена успешно", category="success")
         else:
             flash("Ошибка добавления статьи", category="error")
 
     return render_template('add_post.html', menu=dbase.get_menu(), title="Добавление статьи")
 
 
-@app.route("/post/<int:id_post>")
-def show_post(id_post):
+@app.route("/post/<alias>")
+def show_post(alias):
     db = get_db()
     dbase = FDataBase(db)
-    title, post = dbase.get_post(id_post)
+    title, post = dbase.get_post(alias)
     if not title:
         abort(404)
-
 
     return render_template('post.html', menu=dbase.get_menu(), title=title, post=post)
 
@@ -118,7 +117,9 @@ def login():
 
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template("page404.html", title="Страница не найдена", menu=menu)
+    db = get_db()
+    dbase = FDataBase(db)
+    return render_template("page404.html", title="Страница не найдена", menu=dbase.get_menu())
 
 
 @app.teardown_appcontext
@@ -126,6 +127,6 @@ def close_db(error):
     if hasattr(g, 'link_db'):
         g.link_db.close()
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
+#
+# if __name__ == "__main__":
+#     app.run(debug=True)
