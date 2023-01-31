@@ -7,7 +7,7 @@ persons = [{
 file_loader = FileSystemLoader('templates')
 env = Environment(loader=file_loader)
 
-tm = env.get_template('main.html')
-msg = tm.render(users=persons, title="Домашнее задание")
+tm1 = env.get_template('main.html')
+msg = tm1.render(users=persons, title="Домашнее задание")
 
 print(msg)
