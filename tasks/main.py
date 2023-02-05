@@ -1,3 +1,3 @@
-from tasks.app import db
-
-db.create_all()
+# from tasks.app import db
+#
+# db.create_all()

@@ -2,6 +2,13 @@ body{
     margin: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
-.center{
+.center, content{
     text-align: center;
     }
+.block{
+    display: flex;
+    flex-wrap: wrap;
+}
+.block div{
+    flex-basis: 300px;
+}
